@@ -1,7 +1,9 @@
-from users.models import User, Profile
+from users.models import User, Profile, Post, Comment
 from rest_framework import viewsets, mixins
-from .serializers import UserRegistrationSerializer, UserProfileSerializer
-from .permissions import UserOwnerOrGetAndPostOnly, IsUserProfileOwnerOrReadOnly
+from rest_framework.viewsets import generics
+from rest_framework import permissions
+from .serializers import UserRegistrationSerializer, UserProfileSerializer, PostSerializer, CommentSerializer
+from .permissions import UserOwnerOrGetAndPostOnly, IsUserProfileOwnerOrReadOnly, IsOwnerOrReadOnly, IsOwnerOfPostOrCommentOwner
 
 class UserViewsets(viewsets.ModelViewSet):
     permission_classes = (UserOwnerOrGetAndPostOnly,)
@@ -12,3 +14,34 @@ class UserProfileViewset(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mix
     permission_classes = (IsUserProfileOwnerOrReadOnly,)
     queryset = Profile.objects.all()
     serializer_class = UserProfileSerializer
+
+class PostListViewset(viewsets.ModelViewSet):
+    
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class PostDetailViewset(viewsets.ModelViewSet):
+    permission_classes = (IsOwnerOrReadOnly)
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+    
+class CommentListViewset(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class CommentDetailViewset(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = Comment
+    permission_classes = (IsOwnerOrReadOnly, IsOwnerOfPostOrCommentOwner)

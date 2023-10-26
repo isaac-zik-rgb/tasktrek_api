@@ -42,6 +42,33 @@ class FileGeneratorPath(object):
 profile_image_path = FileGeneratorPath()
 user_resume = FileGeneratorPath()
 
+class Post(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=100, blank=True, default='')
+    body = models.TextField(blank=True, default='')
+    owner = models.ForeignKey('User', related_name='posts', on_delete=models.CASCADE)
+
+    def formatted_created(self):
+        return self.created.strftime("%m/%d/%Y %I:%M %p")
+    
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        ordering = ['created']
+    
+class Comment(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    body = models.TextField(blank=True)
+    owner = models.ForeignKey('User', related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
+
+    def formatted_created(self):
+        return self.created.strftime("%m/%d/%Y %I:%M %p")
+
+
+    class Meta:
+        ordering = ['created']
 
 
 

@@ -1,6 +1,36 @@
 from users.models import User
 from rest_framework import serializers
-from .models import Profile
+from .models import Profile, Post, Comment
+
+
+class PostSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    created = serializers.SerializerMethodField()
+    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
+    class Meta:
+
+        model = Post
+        fields = ['id', 'title', 'body', 'owner', 'created', 'comments']
+
+    def get_created(self, obj):
+        return obj.formatted_created()
+    
+
+class CommentSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    created = serializers.SerializerMethodField()
+    
+
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'body', 'owner', 'post', 'created']
+
+    def get_created(self, obj):
+        return obj.formatted_created()
+
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     user = serializers.HyperlinkedRelatedField(read_only=True, many=False, view_name='user-detail')
@@ -24,7 +54,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     old_password = serializers.CharField(write_only=True, required=False)
     sex = serializers.ChoiceField(choices=SEX_CHOICES, required=False)
     profile = UserProfileSerializer(read_only=True)
-
+    posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
 
     def validate(self, data):
@@ -85,4 +116,4 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'old_password', 'country', 'sex', 'phone','profile' ]
+        fields = ['url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'old_password', 'country', 'sex', 'phone','profile', 'posts', 'comments']
