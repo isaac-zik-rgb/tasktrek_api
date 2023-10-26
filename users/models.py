@@ -72,6 +72,17 @@ class Comment(models.Model):
 
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, blank=False, default='')
+    owner = models.ForeignKey('User', related_name='categories', on_delete=models.CASCADE)
+    posts = models.ManyToManyField('Post', related_name='categories', blank=True)
+
+    def __str__(self):
+        return f"{self.name}"
+    class Meta:
+        verbose_name_plural = 'categories'
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image =models.FileField(upload_to=profile_image_path, null=True, blank=True)

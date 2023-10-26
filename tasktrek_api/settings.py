@@ -43,8 +43,15 @@ INSTALLED_APPS = [
     'drf_social_oauth2',
     'oauth2_provider',
     'drf_spectacular',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rest_auth',
+    'rest_auth.registration',
+    
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'tasktrek_api.urls'
@@ -110,6 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
 
     ],
     'DEFAULT_SCHEMA_CLASS': "drf_spectacular.openapi.AutoSchema",
@@ -122,6 +131,7 @@ REST_FRAMEWORK = {
         'drf_social_oauth2.authentication.SocialAuthentication',
     ]
 }
+
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "TASKTREK API",
@@ -153,8 +163,15 @@ AUTH_USER_MODEL = 'users.User'
 
 
 # Configure the email backend (using SMTP as an example)
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
 AUTHENTICATION_BACKENDS = (
     'drf_social_oauth2.backends.DjangoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+
 )
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DRFSO2_PROPRIETARY_BACKEND_NAME = 'TaskTrek'

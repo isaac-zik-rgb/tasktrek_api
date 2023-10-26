@@ -23,7 +23,8 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 
 auth_api_urls = [
-    path(r'', include('drf_social_oauth2.urls'))
+    path(r'', include('drf_social_oauth2.urls')),
+    
 ]
 if DEBUG:
     auth_api_urls.append(path(r'verify/', include('rest_framework.urls')))
@@ -40,4 +41,5 @@ api_url_patterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
    path('api/', include(api_url_patterns)),
+  
 ]

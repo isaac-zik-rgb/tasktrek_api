@@ -1,6 +1,6 @@
 from users.models import User
 from rest_framework import serializers
-from .models import Profile, Post, Comment
+from .models import Profile, Post, Comment, Category
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Post
-        fields = ['id', 'title', 'body', 'owner', 'created', 'comments']
+        fields = ['id', 'title', 'body', 'owner', 'created', 'comments', 'categories']
 
     def get_created(self, obj):
         return obj.formatted_created()
@@ -29,6 +29,17 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_created(self, obj):
         return obj.formatted_created()
+    
+
+class CategorySerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
+
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'owner', 'posts']
+
 
 
 
@@ -56,6 +67,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(read_only=True)
     posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    categories = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    post_count = serializers.SerializerMethodField()
+    comment_count = serializers.SerializerMethodField()
 
 
     def validate(self, data):
@@ -75,7 +89,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             if country == None:
                 raise serializers.ValidationError({'info': 'Please Provide your country name'})
             if phone == None:
-                raise serializers.ValidationError({'info': 'Please Provide your cphone number'})
+                raise serializers.ValidationError({'info': 'Please Provide your phone number'})
             if sex == None:
                 raise serializers.ValidationError({'info': 'Please choose a sex'})
     
@@ -93,6 +107,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user.save()
 
         return user   
+    
+    def get_post_count(self, obj):
+        return obj.posts.count()
+    
+
+    def get_comment_count(self, obj):
+        return obj.comments.count()
 
 
     def update(self, instance, validated_data):
@@ -116,4 +137,5 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'old_password', 'country', 'sex', 'phone','profile', 'posts', 'comments']
+        fields = ['url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'old_password', 
+                  'country', 'sex', 'phone','profile', 'posts', 'post_count','comments','comment_count', 'categories']
