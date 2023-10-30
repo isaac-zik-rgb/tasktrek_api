@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskTrek | Signup</title>
+    <link rel="stylesheet" href="static/style.css">
+    
+</head>
+
+<body>
+    
+   <div class="container">
+    <p id="message"></p>
+        <div class="title">Registration</div>
+        <form  class="registration_form">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Firstname</span>
+                    <input type="text" name="first_name" placeholder="Enter your firstname" required>
+
+                </div>
+                <div class="input-box">
+                    <span class="details">Lastname</span>
+                    <input type="text" name="last_name" placeholder="Enter your lastname" required>
+
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="text" name="email" placeholder="Enter your Email" required>
+
+                </div>
+                <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="text" name="phone" placeholder="Enter your Number" required>
+
+                </div>
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" name="password" placeholder="Enter your password" required>
+
+                </div>
+                <div class="input-box">
+                    <span class="details">comfirm password</span>
+                    <input type="text" name="comfirm_password" placeholder="comfirm password" required>
+
+                </div>
+                <div class="input-box">
+                    <span class="details">Country</span>
+                    <input type="text" name="country" placeholder="Enter your country" required>
+
+                </div>
+
+
+
+            </div>
+            <div class="gender-details">
+                <input type="radio" name="gender" value="M" id="dot-1">
+                <input type="radio" name="gender" value="F" id="dot-2">
+                <input type="radio" name="gender" value="O" id="dot-3">
+                <span class="gender-title">Gender</span>
+                <div class="category">
+                    <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="gender">Male</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="gender">Female</span>
+                    </label>
+                    <label for="dot-3">
+                        <span class="dot three"></span>
+                        <span class="gender">Other</span>
+                    </label>
+                    
+                </div>
+            </div>
+            <input type="checkbox" required> Agree on <a href="#" >terms of services </a> of this Application 
+            <div class="button">
+
+                <input type="submit" value="Register">
+                <p id="log">Alredy registered?  <a href="login.html"> Login Here </a></p>
+            </div>
+        </form>
+
+    </div>
+    
+   
+    <script src="registration.js"></script>
+</body>
+</html>

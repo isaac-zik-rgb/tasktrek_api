@@ -63,7 +63,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(required=False)
     country = serializers.CharField(required=False)
     old_password = serializers.CharField(write_only=True, required=False)
-    sex = serializers.ChoiceField(choices=SEX_CHOICES, required=False)
+    gender = serializers.ChoiceField(choices=SEX_CHOICES, required=False)
     profile = UserProfileSerializer(read_only=True)
     posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
@@ -76,7 +76,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         request_method = self.context['request'].method
         password = data.get('password', None)
         phone = data.get('phone', None)
-        sex = data.get('sex', None)
+        gender = data.get('gender', None)
         country = data.get('country', None)
         if request_method == 'POST':
             if password == None:
@@ -90,7 +90,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError({'info': 'Please Provide your country name'})
             if phone == None:
                 raise serializers.ValidationError({'info': 'Please Provide your phone number'})
-            if sex == None:
+            if gender == None:
                 raise serializers.ValidationError({'info': 'Please choose a sex'})
     
         return data
@@ -138,4 +138,4 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'old_password', 
-                  'country', 'sex', 'phone','profile', 'posts', 'post_count','comments','comment_count', 'categories']
+                  'country', 'gender', 'phone','profile', 'posts', 'post_count','comments','comment_count', 'categories']

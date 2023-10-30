@@ -14,7 +14,7 @@ class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True)
     country = models.CharField(max_length=30, blank=False)
     birth_date = models.DateField('Date of birth', null=True, blank=True)
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES)
+    gender = models.CharField(max_length=1, choices=SEX_CHOICES)
     phone = models.CharField(max_length=15, blank=True)
     email = models.EmailField(unique=True)
 
