@@ -48,7 +48,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['url', 'id', 'user', 'image', 'resume','phone', 'country','email', 'bio']
+        fields = ['url', 'id', 'user', 'image', 'resume','phone', 'country','email', 'bio', 'education', 'years_of_experience', 'working_experience', 'additional_details', 'Address_Line1', 'Address_Line2', 'state', 'postal_code']
     
 
 class UserRegistrationSerializer(serializers.ModelSerializer):

@@ -17,29 +17,38 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users.routers import router as api_router
-from.settings import DEBUG
+from . import settings
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from users import views
+from django.conf.urls.static import static
 
 
 
 auth_api_urls = [
     path(r'', include('drf_social_oauth2.urls')),
+   
     
 ]
-if DEBUG:
+if settings.DEBUG:
     auth_api_urls.append(path(r'verify/', include('rest_framework.urls')))
 
 
 api_url_patterns = [
      path(r'auth/', include(auth_api_urls)),
      path(r'account/', include(api_router.urls) ),
+     path(r'accounts/', include('authemail.urls') ),
      path(r'schema/', SpectacularAPIView.as_view(), name="schema"),
      path(r'schema/docs/', SpectacularSwaggerView.as_view(url_name="schema")),
+       
 
 ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
    path('api/', include(api_url_patterns)),
-  
+  path('signup/verify/', views.SignupVerifyFrontEnd.as_view()),
+    path('signup/verified/', views.SignupVerifiedFrontEnd.as_view(),
+         name='signup_verified_page'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

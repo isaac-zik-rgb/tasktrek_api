@@ -10,14 +10,5 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 
-@receiver(pre_save, sender=User)
-def create_username(sender, instance, **kwargs):
-    if not instance.username:
-        username = f"{instance.first_name}_{instance.last_name}".lower()
-        count = 1
-        while User.objects.filter(username=username):
-            username = f"{instance.first_name}_{instance.last_name}_{count}".lower()
-            count +=1
 
-        instance.username = username
         

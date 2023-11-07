@@ -3,20 +3,25 @@ from django.db import models
 import os
 from django.utils.deconstruct import deconstructible
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
-class User(AbstractUser):
+from django.db import models
+from authemail.models import EmailUserManager, EmailAbstractUser
+
+
+class User(EmailAbstractUser):
     SEX_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
         ('O', 'Other'),
     )
-    bio = models.TextField(max_length=500, blank=True)
+    
     country = models.CharField(max_length=30, blank=False)
-    birth_date = models.DateField('Date of birth', null=True, blank=True)
+    date_of_birth = models.DateField('Date of birth', null=True, blank=True)
     gender = models.CharField(max_length=1, choices=SEX_CHOICES)
     phone = models.CharField(max_length=15, blank=True)
-    email = models.EmailField(unique=True)
+    
+    
+    objects = EmailUserManager()
 
     
 
@@ -33,7 +38,7 @@ class FileGeneratorPath(object):
             path = f"media/account/{instance.user.id}/files"
             name = f"resume.{ext}"
         else:
-            path = f"media/account/{instance.user.id}/images"
+            path = f"account/{instance.user.id}/images"
             name = f"profile_image.{ext}"
 
         
@@ -91,6 +96,15 @@ class Profile(models.Model):
     resume = models.FileField(upload_to=user_resume, null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True)
     email = models.CharField(max_length=100, blank=True)
+    education = models.CharField(max_length=50, blank=True)
+    years_of_experience = models.CharField(max_length=10, blank=True)
+    working_experience = models.TextField(blank=True)
+    additional_details = models.TextField(blank=True)
+    Address_Line1 = models.CharField(max_length=50, blank=True)
+    Address_Line2 = models.CharField(max_length=50, blank=True)
+    state = models.CharField(max_length=50, blank=True)
+    postal_code = models.CharField(max_length=6, blank=True)
+
 
 
 
@@ -101,5 +115,5 @@ class Profile(models.Model):
 
 
     def __str__(self):
-        return f"{self.user.username}'s profile"
+        return f"{self.user.first_name}'s profile"
     
