@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#*ej0bfr%xe9#!zjt8)lqz9t-bt0-z1)91bwl8&t_ml@%xiwb6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['codezenith.pythonanywhere.com']
 
 
 # Application definition
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'corsheaders',
-    
+
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -103,8 +103,12 @@ WSGI_APPLICATION = 'tasktrek_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'codezenith$tasktrek',
+        'USER': 'codezenith',
+        'PASSWORD': 'Okechukwu22@',
+        'HOST': 'codezenith.mysql.pythonanywhere-services.com',
+        'PORT': ''
     }
 }
 
@@ -139,7 +143,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        
+
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'drf_social_oauth2.authentication.SocialAuthentication',
     ]
@@ -148,7 +152,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "TASKTREK API",
-                        
+
 }
 
 # Internationalization
@@ -197,7 +201,7 @@ EMAIL_FROM = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_FROM') or 'isaacokechukwu20
 EMAIL_BCC = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_BCC') or ''
 
 EMAIL_HOST = os.environ.get('AUTHEMAIL_EMAIL_HOST') or 'smtp.gmail.com'
-EMAIL_PORT = os.environ.get('AUTHEMAIL_EMAIL_PORT') or 465 #587 
+EMAIL_PORT = os.environ.get('AUTHEMAIL_EMAIL_PORT') or 465 #587
 EMAIL_HOST_USER = os.environ.get('AUTHEMAIL_EMAIL_HOST_USER') or 'isaacokechukwu200021@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or 'bydc rvrq ghkf oyld'
 EMAIL_USE_TLS = False
