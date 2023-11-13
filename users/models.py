@@ -104,7 +104,18 @@ class Profile(models.Model):
     Address_Line2 = models.CharField(max_length=50, blank=True)
     state = models.CharField(max_length=50, blank=True)
     postal_code = models.CharField(max_length=6, blank=True)
+    profession = models.CharField(max_length = 50, blank=True)
+    skills = models.TextField(blank=True, null=True)
+    working_hours = models.CharField(max_length=10, blank=True)
 
+    def get_skills_list(self):
+                # Return a list of skills by splitting the comma-separated string
+                return [skill.strip() for skill in self.skills.split(',')]
+
+    def set_skills_list(self, skills_list):
+        # Set skills as a comma-separated string
+        self.skills = ', '.join(skills_list)
+                       
 
 
 

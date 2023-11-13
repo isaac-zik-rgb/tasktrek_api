@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#*ej0bfr%xe9#!zjt8)lqz9t-bt0-z1)91bwl8&t_ml@%xiwb6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['codezenith.pythonanywhere.com']
+ALLOWED_HOSTS = ['54.157.181.131', '127.0.0.1:8000', 'web-02.codezenith.tech']
 
 
 # Application definition
@@ -67,11 +67,9 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:5500',
-    'http://127.0.0.1:5501',
-]
-APPEND_SLASH=False
+CORS_ALLOW_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+APPEND_SLASH=True
 
 ROOT_URLCONF = 'tasktrek_api.urls'
 
@@ -104,10 +102,10 @@ WSGI_APPLICATION = 'tasktrek_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'codezenith$tasktrek',
-        'USER': 'codezenith',
-        'PASSWORD': 'Okechukwu22@',
-        'HOST': 'codezenith.mysql.pythonanywhere-services.com',
+        'NAME': 'tasktek_db',
+        'USER': 'tasktrek',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
         'PORT': ''
     }
 }
@@ -169,10 +167,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 10  
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    'tasktrek_api/users/static',
+    ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
