@@ -1,6 +1,11 @@
 # tasktrek_api
+[![TaskTrek Demo Video](https://i9.ytimg.com/vi_webp/JuU6kaZRm4o/mq2.webp?sqp=CPyrzqoG-oaymwEmCMACELQB8quKqQMa8AEB-AHOBoAC4AOKAgwIABABGEggUShlMA8=&rs=AOn4CLARYHV4kyfmaqhyl71V5ztXKfl84Q)](https://youtu.be/JuU6kaZRm4o)
+
 ## Description:
 TaskTrek API is a robust solution for user registration and user profile management. The API facilitates the creation, retrieval, updating, and deletion of user accounts and their associated profiles. Upon user creation, a profile is automatically generated, complete with predefined data, streamlining the onboarding process.
+This project was inspired by my deep hunger for employment after several job hunts which were to no avail.
+My team members miss Esther and Mr Nicee and we brainstormed on it and thought it a very good project to build.
+we encountered many roadblocks while building this project one of them was the stack to choose for it, seeing we were just software engineering students who never had real-time experience with these technologies, choosing one was hard, another roadblock was trying to host it, hosting the API was one of the daunting part we encounter, but despite this ods we were able to kill it and bring it to live
 #### Key Features
 * User Management: Users can be easily created, retrieved, updated, and deleted through dedicated endpoints.
 * Automatic Profile Generation: Every user is accompanied by an automatically generated profile, reducing the need for manual setup.
