@@ -2,7 +2,7 @@ from users.models import User
 from rest_framework import serializers
 from .models import Profile, Post, Comment, Category
 
-
+# A Post serializer that serialize the properties for user viewset
 class PostSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     created = serializers.SerializerMethodField()
@@ -28,6 +28,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['id', 'body', 'owner', 'post', 'created']
 
     def get_created(self, obj):
+        # return a string representation for the obj
         return obj.formatted_created()
     
 
@@ -101,6 +102,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     
     def create(self, validated_data):
+        # create the password and pop it out from the validated data
         
         password = validated_data.pop('password')
         user = User.objects.create(**validated_data)

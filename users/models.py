@@ -7,7 +7,7 @@ from django.db import models
 from django.db import models
 from authemail.models import EmailUserManager, EmailAbstractUser
 
-
+# define a user class that inherit from the emailabstractuser class
 class User(EmailAbstractUser):
     SEX_CHOICES = (
         ('M', 'Male'),
@@ -25,7 +25,7 @@ class User(EmailAbstractUser):
 
     
 
-
+# A class that generate the path to store my files or images
 @deconstructible
 class FileGeneratorPath(object):
     def __init__(self):
@@ -47,6 +47,7 @@ class FileGeneratorPath(object):
 profile_image_path = FileGeneratorPath()
 user_resume = FileGeneratorPath()
 
+# Created  post class that has a oneto many relationship with the user class
 class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, blank=True, default='')
@@ -61,7 +62,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['created']
-    
+
+
 class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     body = models.TextField(blank=True)
@@ -88,6 +90,8 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
 
+
+# The profile class that has a onetoone field relationship with the userclass, when the use is deleted the profile is delete as while
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image =models.FileField(upload_to=profile_image_path, null=True, blank=True)
@@ -108,6 +112,7 @@ class Profile(models.Model):
     skills = models.TextField(blank=True, null=True)
     working_hours = models.CharField(max_length=10, blank=True)
 
+    
     def get_skills_list(self):
                 # Return a list of skills by splitting the comma-separated string
                 return [skill.strip() for skill in self.skills.split(',')]
