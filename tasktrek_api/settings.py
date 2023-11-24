@@ -105,7 +105,7 @@ DATABASES = {
         'NAME': 'tasktek_db',
         'USER': 'tasktrek',
         'PASSWORD': '12345',
-        'HOST': 'localhost',
+        'HOST': '%',
         'PORT': ''
     }
 }
