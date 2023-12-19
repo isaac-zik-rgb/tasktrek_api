@@ -1,69 +1,68 @@
-
-Usage:   
-  pip <command> [options]
-
-Commands:
-  install                     Install packages.
-  download                    Download packages.
-  uninstall                   Uninstall packages.
-  freeze                      Output installed packages in requirements format.
-  list                        List installed packages.
-  show                        Show information about installed packages.
-  check                       Verify installed packages have compatible dependencies.
-  config                      Manage local and global configuration.
-  search                      Search PyPI for packages.
-  cache                       Inspect and manage pip's wheel cache.
-  index                       Inspect information available from package indexes.
-  wheel                       Build wheels from your requirements.
-  hash                        Compute hashes of package archives.
-  completion                  A helper command used for command completion.
-  debug                       Show information useful for debugging.
-  help                        Show help for commands.
-
-General Options:
-  -h, --help                  Show help.
-  --debug                     Let unhandled exceptions propagate outside the
-                              main subroutine, instead of logging them to
-                              stderr.
-  --isolated                  Run pip in an isolated mode, ignoring
-                              environment variables and user configuration.
-  --require-virtualenv        Allow pip to only run in a virtual environment;
-                              exit with an error otherwise.
-  -v, --verbose               Give more output. Option is additive, and can be
-                              used up to 3 times.
-  -V, --version               Show version and exit.
-  -q, --quiet                 Give less output. Option is additive, and can be
-                              used up to 3 times (corresponding to WARNING,
-                              ERROR, and CRITICAL logging levels).
-  --log <path>                Path to a verbose appending log.
-  --no-input                  Disable prompting for input.
-  --proxy <proxy>             Specify a proxy in the form
-                              [user:passwd@]proxy.server:port.
-  --retries <retries>         Maximum number of retries each connection should
-                              attempt (default 5 times).
-  --timeout <sec>             Set the socket timeout (default 15 seconds).
-  --exists-action <action>    Default action when a path already exists:
-                              (s)witch, (i)gnore, (w)ipe, (b)ackup, (a)bort.
-  --trusted-host <hostname>   Mark this host or host:port pair as trusted,
-                              even though it does not have valid or any HTTPS.
-  --cert <path>               Path to PEM-encoded CA certificate bundle. If
-                              provided, overrides the default. See 'SSL
-                              Certificate Verification' in pip documentation
-                              for more information.
-  --client-cert <path>        Path to SSL client certificate, a single file
-                              containing the private key and the certificate
-                              in PEM format.
-  --cache-dir <dir>           Store the cache data in <dir>.
-  --no-cache-dir              Disable the cache.
-  --disable-pip-version-check
-                              Don't periodically check PyPI to determine
-                              whether a new version of pip is available for
-                              download. Implied with --no-index.
-  --no-color                  Suppress colored output.
-  --no-python-version-warning
-                              Silence deprecation warnings for upcoming
-                              unsupported Pythons.
-  --use-feature <feature>     Enable new functionality, that may be backward
-                              incompatible.
-  --use-deprecated <feature>  Enable deprecated functionality, that will be
-                              removed in the future.
+psycopg2-binary==2.9.9
+asgiref==3.7.2
+attrs==23.1.0
+backports.zoneinfo==0.2.1
+blinker==1.6.2
+charset-normalizer==3.3.0
+click==8.1.7
+colorama==0.4.6
+cryptography==41.0.4
+defusedxml==0.8.0rc2
+Deprecated==1.2.14
+distlib==0.3.7
+django-allauth==0.57.0
+django-braces==1.15.0
+django-cors-headers==3.10.1
+django-filter==23.3
+django-ipware==4.0.0
+django-oauth-toolkit==2.3.0
+django-rest-auth==0.9.5
+django-rest-authemail==2.1.7
+django-rest-framework-social-oauth2==1.1.0
+django-restframework==0.0.1
+djangorestframework==3.14.0
+drf-social-oauth2==2.1.3
+drf-spectacular==0.26.5
+ecdsa==0.18.0
+filelock==3.3.2
+gunicorn==21.2.0
+idna==3.4
+importlib-metadata==4.0.0
+importlib-resources==4.0.0
+inflection==0.5.1
+itsdangerous==2.1.2
+Jinja2==3.1.2
+jsonschema==4.0.1
+jsonschema-specifications>==2019.09
+jwcrypto==1.5.0
+Markdown>==3.3.6
+MarkupSafe==2.1.3
+mysqlclient>==2.1
+oauthlib==3.2.2
+packaging==23.2
+Pillow>==8.4.0
+pkgutil-resolve-name==1.3.10
+platformdirs==3.10.0
+pyasn1==0.5.0
+pycparser==2.21
+PyJWT==2.8.0
+python-jose==3.3.0
+python3-openid==3.2.0
+pytz==2023.3.post1
+PyYAML==6.0.1
+referencing>==0.29.1
+requests==2.31.0
+requests-oauthlib==1.3.1
+rsa==4.9
+six==1.16.0
+social-auth-app-django==5.3.0
+social-auth-core==4.4.2
+sqlparse==0.4.4
+typing-extensions>==4.0.1
+tzdata==2023.3
+uritemplate==4.1.1
+urllib3==2.0.6
+virtualenv==20.24.5
+werkzeug>==2.0.2
+wrapt==1.15.0
+zipp>==3.6.0
