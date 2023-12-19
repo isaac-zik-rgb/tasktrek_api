@@ -101,12 +101,12 @@ WSGI_APPLICATION = 'tasktrek_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tasktek_db',
-        'USER': 'tasktrek',
-        'PASSWORD': '12345',
-        'HOST': '%',
-        'PORT': ''
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tasktrek_db',
+        'USER': 'isaac',
+        'PASSWORD': 'kLEZguDFKGxncyBVGbbzolwNIFtnvVS8',
+        'HOST': 'dpg-cm0qt121hbls73dek1u0-a',
+        'PORT': '5432'
     }
 }
 
