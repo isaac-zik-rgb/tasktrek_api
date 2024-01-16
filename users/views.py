@@ -30,7 +30,7 @@ class SignupVerifyFrontEnd(View):
         if 'detail' in response:
             return HttpResponse( 'sorry we were unable to verify your email')
 
-        return render(request, "signup_verified.html")
+       return HttpResponseRedirect(reverse('signup_verified_page'))
 
 
 class SignupVerifiedFrontEnd(TemplateView):
