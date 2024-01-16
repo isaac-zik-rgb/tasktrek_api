@@ -33,6 +33,10 @@ class SignupVerifyFrontEnd(View):
         return render(request, "signup_verified.html")
 
 
+class SignupVerifiedFrontEnd(TemplateView):
+    template_name = 'signup_verified.html'
+
+
 class PasswordResetFrontEnd(FormView):
         template_name = 'password_reset.html'
         form_class = PasswordResetForm
