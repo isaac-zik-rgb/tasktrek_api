@@ -67,7 +67,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-CORS_ALLOW_ORIGINS = '*'
+CORS_ALLOWED_ORIGINS = [
+    "https://tasktrek-766fe.web.app",
+    # Add other origins as needed
+]
 CORS_ALLOW_CREDENTIALS = True
 APPEND_SLASH=True
 
