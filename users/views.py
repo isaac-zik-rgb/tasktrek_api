@@ -28,8 +28,7 @@ class SignupVerifyFrontEnd(View):
 
         # Handle other error responses from API
         if 'detail' in response:
-            return HttpResponse( 'sorry we were unable to verify your email')
-        
+            return HttpResponseRedirect(reverse('signup_not_verified_page'))
         return HttpResponseRedirect(reverse('signup_verified_page'))
 
 
