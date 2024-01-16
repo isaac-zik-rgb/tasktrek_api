@@ -5,7 +5,7 @@ from django.views.generic.base import View
 from django.views.generic.edit import FormView
 
 
-from authemail import wrapper
+from . import wrapper
 
 from .forms import SignupForm, LoginForm
 from .forms import PasswordResetForm, PasswordResetVerifiedForm
