@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import TemplateView
 from django.views.generic.base import View
 from django.views.generic.edit import FormView
-
+from django.shortcuts import render
 
 from . import wrapper
 
@@ -30,12 +30,7 @@ class SignupVerifyFrontEnd(View):
         if 'detail' in response:
             return HttpResponse( 'sorry we were unable to verify your email')
 
-        return HttpResponseRedirect(reverse('signup_verified_page'))
-
-
-class SignupVerifiedFrontEnd(TemplateView):
-    template_name = 'signup_verified.html'
-
+        return render(request, "signup_verified.html")
 
 
 class PasswordResetFrontEnd(FormView):
