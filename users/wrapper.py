@@ -44,10 +44,11 @@ class API(object):
     def _POST(self, path, params=None, payload=None):
         return self._request('POST', path, params=params, payload=payload)
 
-    def _set_attrs_to_values(self, response={}):
+    def _set_attrs_to_values(self, response=None):
         """
         Set attributes to dictionary values so can access via dot notation.
         """
+        response = {} if response is None else response
         for key in response.keys():
             setattr(self, key, response[key])
 
