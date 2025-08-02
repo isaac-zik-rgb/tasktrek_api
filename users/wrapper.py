@@ -33,7 +33,7 @@ class API(object):
         response = requests.request(
             method, url, params=params,
             data=json.dumps(payload, cls=DjangoJSONEncoder) if payload else payload,
-            headers=headers)
+            headers=headers, timeout=60)
 
         response.encoding = 'utf-8'
         return response.json()
